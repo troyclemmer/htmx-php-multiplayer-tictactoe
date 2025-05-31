@@ -1,6 +1,12 @@
 <html>
 <head>
-<title>Multiplayer TicTacToe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php
+$game_id = $_GET['game'] ?? '';
+$player = $_GET['player'] ?? '';
+$spectating = (empty($player) || (strtoupper($player) !== "X" && strtoupper($player) !== "O"));
+?>
+<title>Game <?= $game_id; ?></title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">
 <style>
@@ -17,15 +23,13 @@ button {
 <a style="position: absolute; top: 5; left:5;" href='/'>Back to Lobby</a>
 
 <?php
-$game_id = $_GET['game'] ?? '';
-$player = $_GET['player'] ?? '';
-$spectating = (empty($player) || (strtoupper($player) !== "X" && strtoupper($player) !== "O"));
 if (!$spectating):
 ?>
 <h2>You are Player <?= htmlspecialchars($player) ?></h2>
 <?php else: ?>
 <h2>You are Spectating</h2>
 <?php endif; ?>
+<h3>Game <?= $game_id; ?></h3>
 <?php include "board.php"; ?>
 <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
 <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/badge/badge.js"></script>
