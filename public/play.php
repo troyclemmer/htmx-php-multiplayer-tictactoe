@@ -29,7 +29,7 @@ if (!$spectating):
 <?php else: ?>
 <h2>You are Spectating</h2>
 <?php endif; ?>
-<h3>Game <?= $game_id; ?></h3>
+<p>Game <?= $game_id; ?></p>
 <?php include "board.php"; ?>
 <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
 <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/badge/badge.js"></script>
