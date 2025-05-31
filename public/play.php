@@ -25,9 +25,9 @@ button {
 <?php
 if (!$spectating):
 ?>
-<h2>You are Player <?= htmlspecialchars($player) ?></h2>
+<h2 style="padding-top: 1rem;">You are Player <?= htmlspecialchars($player) ?></h2>
 <?php else: ?>
-<h2>You are Spectating</h2>
+<h2 style="padding-top: 1rem;">You are Spectating</h2>
 <?php endif; ?>
 <p>Game <?= $game_id; ?></p>
 <?php include "board.php"; ?>
