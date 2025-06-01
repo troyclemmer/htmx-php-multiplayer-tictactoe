@@ -21,7 +21,8 @@ width:100%;
 </form>
 <div hx-get="lobby.php"
      hx-trigger="load, every 5s"
-     hx-swap="innerHTML">
+     hx-swap="innerHTML"
+	 style="overflow-x: auto;">
 </div>
 <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
 <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/relative-time/relative-time.js"></script>
