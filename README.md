@@ -26,6 +26,7 @@ This is just a proof of concept game I made in a few days.  I wanted to try maki
 - Add the option to add a computer player as the second player
 - Randomize X or O for first player
 - Allow player names
+- Password protected games
 
 ## development
 - Can run locally using `php -S localhost:82` on the `/public' folder
