@@ -5,15 +5,7 @@ $games = file_exists(GAMES_FILE)
     ? json_decode(file_get_contents(GAMES_FILE), true)
     : [];
 	
-// delete old games
-$now = time();
-$expiration_seconds = 86400; // 24 hours
-foreach ($games as $id => $game) {
-    if (isset($game['created']) && $game['created'] < $now - $expiration_seconds) {
-        unset($games[$id]);
-    }
-}
-	
+
 
 // Shorter ID start  (lowest integer that isn't taken)
 
@@ -36,6 +28,15 @@ if (isset($games[(string)$id])) {
 //shorter ID end
 
 //$id = uniqid(); //use this if you have more concurrent users, but makes the strings so much longer
+
+// delete old games
+$now = time();
+$expiration_seconds = 86400; // 24 hours
+foreach ($games as $id => $game) {
+    if (isset($game['created']) && $game['created'] < $now - $expiration_seconds) {
+        unset($games[$id]);
+    }
+}
 
 $games[(string)$id] = [
     "board" => array_fill(0, 3, array_fill(0, 3, "")),
