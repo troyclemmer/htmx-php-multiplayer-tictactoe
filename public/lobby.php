@@ -21,7 +21,7 @@ foreach ($games as $id => $g) {
 		$created = new DateTime("@{$g['created']}"); // "@" tells DateTime to interpret as timestamp in UTC
 		$created->setTimezone(new DateTimeZone('America/New_York')); // Replace with user's timezone
 		$completed = !empty($g['winner']);
-        echo  "<li style='margin-bottom: .2rem;'>";
+        echo  "<li style='margin-bottom: .2rem; white-space: nowrap;'>";
 			if (!$g['started']) {
 				echo "<sl-badge style='display: inline-block; width: 80px; margin-right:.75rem;' variant='warning' pill>Waiting</sl-badge>";
 			} else {
