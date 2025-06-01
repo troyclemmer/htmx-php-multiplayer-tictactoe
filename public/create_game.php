@@ -32,9 +32,9 @@ if (isset($games[(string)$id])) {
 // delete old games
 $now = time();
 $expiration_seconds = 86400; // 24 hours
-foreach ($games as $id => $game) {
+foreach ($games as $gid => $game) {
     if (isset($game['created']) && $game['created'] < $now - $expiration_seconds) {
-        unset($games[$id]);
+        unset($games[$gid]);
     }
 }
 
