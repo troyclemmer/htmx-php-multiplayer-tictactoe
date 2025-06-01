@@ -7,13 +7,13 @@ $r = $_POST['row'] ?? null;
 $c = $_POST['col'] ?? null;
 
 if (!$game_id || !$player || $r === null || $c === null) {
-    die("Error: Invalid input.");
+    die("<span style='color:red;'>Error: Invalid input.</span>");
 }
 
 $games = json_decode(file_get_contents(GAMES_FILE), true);
 
 if (!isset($games[$game_id])) {
-    die("Error: Game not found.");
+    die("<span style='color:red;'>Error: Game not found.</span>");
 }
 
 $game = &$games[$game_id];
