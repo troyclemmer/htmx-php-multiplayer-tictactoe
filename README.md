@@ -18,7 +18,14 @@ This is just a proof of concept game I made in a few days.  I wanted to try maki
 - JSON for server data
 - Spectating full games support
 - Viewing results of past games support
-- Automatic purging of old game data (24 hours) 
+- Automatic purging of old game data (24 hours)
+
+## improvement ideas
+- On results board, highlight the winning line
+- Keep track of order of moves, and can either display turn numbers on the moves themselves (or just in results board), or allow the ability to "playback" a game, showing the moves in order with delay.
+- Add the option to add a computer player as the second player
+- Randomize X or O for first player
+- Allow player names
 
 ## development
 - Can run locally using `php -S localhost:82` on the `/public' folder
