@@ -20,7 +20,7 @@ button {
 </head>
 <body>
 
-<a style="position: absolute; top: 5; left:5;" href='/'>Back to Lobby</a>
+<a style="position: absolute; top: 5; left:5;" href='../'>Back to Lobby</a>
 
 <?php
 if (!$spectating):
