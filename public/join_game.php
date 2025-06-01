@@ -1,7 +1,7 @@
 <?php
 define("GAMES_FILE", dirname(__DIR__) . "/data/games.json");
 
-$id = trim(htmlspecialchars($_GET['game']));
+$id = trim(str_replace("game","",htmlspecialchars(strtolower($_GET['game']))));
 $games = file_exists(GAMES_FILE) ? json_decode(file_get_contents(GAMES_FILE), true) : [];
 if (isset($games[$id]) && !$games[$id]['started']) {
     $games[$id]['players']['O'] = true;
