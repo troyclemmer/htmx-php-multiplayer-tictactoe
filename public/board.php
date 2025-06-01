@@ -5,13 +5,13 @@ $game_id = $_GET['game'] ?? '';
 $player = $_GET['player'] ?? '';
 
 if (!file_exists(GAMES_FILE)) {
-    die("Error: Game data file not found.");
+    die("<span style='color:red;'>Error: Game data file not found.</span>");
 }
 
 $games = json_decode(file_get_contents(GAMES_FILE), true);
 
 if (!$games || !isset($games[$game_id])) {
-    die("Error: Game not found or data is corrupted.");
+    die("<span style='color:red;'>Error: Game not found or data is corrupted.</span>");
 }
 
 $game = $games[$game_id];
