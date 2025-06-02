@@ -18,7 +18,8 @@ This is just a proof of concept game I made in a few days.  I wanted to try maki
 - JSON for server data
 - Spectating full games support
 - Viewing results of past games support
-- Automatic purging of old game data (24 hours)
+- Automatic purging of old game data (24 hours for started games, 1 hour for non-started games)
+- Rate-limiting by IP for creating games
 
 ## improvement ideas
 - On results board, highlight the winning line
