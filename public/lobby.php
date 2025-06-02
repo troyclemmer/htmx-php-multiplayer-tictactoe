@@ -1,4 +1,4 @@
-<ul style="list-style-type: none; padding-inline-start: 0;">
+<ul style="list-style-type: none; padding-inline-start: 0; padding:0 1rem;">
 <?php
 define("GAMES_FILE", dirname(__DIR__) . "/data/games.json");
 $games = json_decode(file_get_contents(GAMES_FILE), true) ?? [];
