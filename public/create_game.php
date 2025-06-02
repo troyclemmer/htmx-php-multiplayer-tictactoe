@@ -1,6 +1,25 @@
 <?php
 define("GAMES_FILE", dirname(__DIR__) . "/data/games.json");
 
+
+//rate limiting by IP, don't allow more than 3 created games per 3 min
+$ip = $_SERVER['REMOTE_ADDR'];
+$log_file = __DIR__ . '/rate_limit_log.json';
+$limit_seconds = 180; // time window
+$max_creations = 3;  // max allowed per window
+
+$log = file_exists($log_file) ? json_decode(file_get_contents($log_file), true) : [];
+
+$log[$ip] = array_filter($log[$ip] ?? [], fn($t) => $t > time() - $limit_seconds);
+if (count($log[$ip]) >= $max_creations) {
+    http_response_code(429);
+    die("<span style='color: red;'>You've created too many games, try again later.</span>");
+}
+
+$log[$ip][] = time();
+file_put_contents($log_file, json_encode($log));
+
+
 $games = file_exists(GAMES_FILE)
     ? json_decode(file_get_contents(GAMES_FILE), true)
     : [];
@@ -29,7 +48,16 @@ if (isset($games[(string)$id])) {
 
 //$id = uniqid(); //use this if you have more concurrent users, but makes the strings so much longer
 
-// delete old games
+// delete 1 hour old games that never got another player
+$now = time();
+$expiration_seconds = 3600; // 1 hour
+foreach ($games as $gid => $game) {
+    if (!$game['started'] && isset($game['created']) && $game['created'] < $now - $expiration_seconds) {
+        unset($games[$gid]);
+    }
+}
+
+// delete games 24 hours old
 $now = time();
 $expiration_seconds = 86400; // 24 hours
 foreach ($games as $gid => $game) {
