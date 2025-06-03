@@ -34,7 +34,7 @@ foreach ($games as $id => $g) {
 			echo "<div style='".($completed?"opacity:.6; ":"")."display:inline-block;'>";
 			echo "Game $id";
 			echo " &bull; ";
-			echo "<small title='".$created->format('M jS, Y \\a\\t g:i A')."'><i><sl-relative-time date='".$created->format(DateTime::ATOM)."'></sl-relative-time></i></small>";
+			echo "<small title='".$created->format('M jS, Y \\a\\t g:i A')."'><i><sl-relative-time format='narrow' date='".$created->format(DateTime::ATOM)."'></sl-relative-time></i></small>";
 			echo " &bull; ";
 			echo "<a href='join_game.php?game=$id'>";
 			if (!$g['started']) {

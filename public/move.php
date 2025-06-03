@@ -24,8 +24,10 @@ if ($game['started'] && $game['board'][$r][$c] === "" && $game['turn'] === $play
 	
 	
 	// Check for win
-    if (checkWin($game['board'], $player)) {
+	$winningCells = checkWin($game['board'], $player);
+    if ($winningCells) {
         $game['winner'] = $player;
+		$game['winning_cells'] = $winningCells;
     }
     // Check for draw if no winner
     elseif (checkDraw($game['board'])) {
@@ -37,6 +39,25 @@ if ($game['started'] && $game['board'][$r][$c] === "" && $game['turn'] === $play
 	
 	
     $game['turn'] = $player === "X" ? "O" : "X";
+	
+	//check if we have an ai opponent, if so, ai makes move now
+	if (!$game['winner'] && $game['ai_opponent'] && strtoupper($game['turn'])==="O") {
+		
+		$attempts = 0;
+		do {
+			$row = random_int(0, 2);
+			$col = random_int(0, 2);
+			$attempts++;
+	
+			if ($game['board'][$row][$col] === "") {
+				$game['board'][$row][$col] = "O";
+				break;
+			}
+		} while ($attempts < 1000);
+			
+		$game['turn'] = "X";
+	}
+	
     file_put_contents(GAMES_FILE, json_encode($games));
 }
 
@@ -46,16 +67,24 @@ $_GET['player'] = $player;
 include "board.php";
 
 
-function checkWin(array $board, string $player): bool {
+function checkWin(array $board, string $player): array|false {
     // Check rows and columns
     for ($i = 0; $i < 3; $i++) {
-        if ($board[$i][0] === $player && $board[$i][1] === $player && $board[$i][2] === $player) return true;
-        if ($board[0][$i] === $player && $board[1][$i] === $player && $board[2][$i] === $player) return true;
+        if ($board[$i][0] === $player && $board[$i][1] === $player && $board[$i][2] === $player) {
+            return [[$i, 0], [$i, 1], [$i, 2]];
+        }
+        if ($board[0][$i] === $player && $board[1][$i] === $player && $board[2][$i] === $player) {
+            return [[0, $i], [1, $i], [2, $i]];
+        }
     }
 
     // Check diagonals
-    if ($board[0][0] === $player && $board[1][1] === $player && $board[2][2] === $player) return true;
-    if ($board[0][2] === $player && $board[1][1] === $player && $board[2][0] === $player) return true;
+    if ($board[0][0] === $player && $board[1][1] === $player && $board[2][2] === $player) {
+        return [[0, 0], [1, 1], [2, 2]];
+    }
+    if ($board[0][2] === $player && $board[1][1] === $player && $board[2][0] === $player) {
+        return [[0, 2], [1, 1], [2, 0]];
+    }
 
     return false;
 }
