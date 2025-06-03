@@ -20,11 +20,12 @@ This is just a proof of concept game I made in a few days.  I wanted to try maki
 - Viewing results of past games support
 - Automatic purging of old game data (24 hours for started games, 1 hour for non-started games)
 - Rate-limiting by IP for creating games
+- Added optional AI opponent
+  - The reason for this is you can still showcase the multiplayer by spectating the human vs AI game
+  - Note: AI has no brain and picks moves randomly 
 
 ## improvement ideas
-- On results board, highlight the winning line
 - Keep track of order of moves, and can either display turn numbers on the moves themselves (or just in results board), or allow the ability to "playback" a game, showing the moves in order with delay.
-- Add the option to add a computer player as the second player
 - Randomize X or O for first player
 - Allow player names
 - Password protected games
