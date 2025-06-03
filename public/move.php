@@ -66,7 +66,7 @@ if ($game['started'] && $game['board'][$r][$c] === "" && $game['turn'] === $play
 			$game['winner'] = "draw";
 		} else {
 			// Switch turns only if game continues
-			$game['turn'] = $player === "X" ? "O" : "X";
+			$game['turn'] = "X";
 		}
 	}
 	
