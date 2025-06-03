@@ -2,10 +2,10 @@
 define("GAMES_FILE", dirname(__DIR__) . "/data/games.json");
 
 
-//rate limiting by IP, don't allow more than 3 created games per 3 min
+//rate limiting by IP, don't allow more than 3 created games per 1.5 min
 $ip = $_SERVER['REMOTE_ADDR'];
 $log_file = dirname(__DIR__) . '/data/rate_limit_log.json';
-$limit_seconds = 180; // time window
+$limit_seconds = 90; // time window
 $max_creations = 3;  // max allowed per window
 
 $log = file_exists($log_file) ? json_decode(file_get_contents($log_file), true) : [];
