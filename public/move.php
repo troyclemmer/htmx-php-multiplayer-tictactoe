@@ -55,7 +55,19 @@ if ($game['started'] && $game['board'][$r][$c] === "" && $game['turn'] === $play
 			}
 		} while ($attempts < 1000);
 			
-		$game['turn'] = "X";
+		// Check for AI win
+		$winningCells = checkWin($game['board'], $player);
+		if ($winningCells) {
+			$game['winner'] = $player;
+			$game['winning_cells'] = $winningCells;
+		}
+		// Check for draw if no winner
+		elseif (checkDraw($game['board'])) {
+			$game['winner'] = "draw";
+		} else {
+			// Switch turns only if game continues
+			$game['turn'] = $player === "X" ? "O" : "X";
+		}
 	}
 	
     file_put_contents(GAMES_FILE, json_encode($games));
