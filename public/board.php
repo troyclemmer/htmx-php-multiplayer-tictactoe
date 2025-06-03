@@ -66,7 +66,7 @@ for ($r = 0; $r < 3; $r++): ?>
     <sl-badge style='font-size:1.25rem; display: inline-block; margin-right:.75rem;' variant='neutral' pill>Completed</sl-badge><span>It's a draw! 🤝</span>
 <?php elseif (!$game['started']): ?>
 	<sl-badge style='font-size:1.25rem; display: inline-block; margin-right:.75rem;' variant='warning' pill>Waiting</sl-badge><span>Waiting for Player O</span>
-	<div style="margin-top:2rem;"><form action="play.php?game=<?= urlencode($game_id) ?>&player=X&ai=1" method="POST"><button>Play AI Opponent</button></form></div>
+	<div style="margin-top:2rem;"><a href="play.php?game=<?= urlencode($game_id) ?>&player=X&ai=1"><button>Play AI Opponent</button></a></div>
 <?php elseif ($spectating): ?>
 	<sl-badge style='font-size:1.25rem; display: inline-block; margin-right:.75rem;' variant='primary' pulse pill>In Progress</sl-badge><span>Current Turn: <?= htmlspecialchars($game['turn']) ?></p>
 <?php elseif (htmlspecialchars($game['turn'])===$player): ?>
