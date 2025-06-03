@@ -56,9 +56,9 @@ if ($game['started'] && $game['board'][$r][$c] === "" && $game['turn'] === $play
 		} while ($attempts < 1000);
 			
 		// Check for AI win
-		$winningCells = checkWin($game['board'], $player);
+		$winningCells = checkWin($game['board'], "O");
 		if ($winningCells) {
-			$game['winner'] = $player;
+			$game['winner'] = "O";
 			$game['winning_cells'] = $winningCells;
 		}
 		// Check for draw if no winner
