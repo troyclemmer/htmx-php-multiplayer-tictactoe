@@ -11,7 +11,7 @@ if (!file_exists(GAMES_FILE)) {
 $games = json_decode(file_get_contents(GAMES_FILE), true);
 
 if (!$games || !isset($games[$game_id])) {
-    die("<span style='color:red;'>Error: Game not found or data is corrupted.</span>");
+    die("<span style='color:red;'>Error: Game not found.</span>");
 }
 
 $game = $games[$game_id];
