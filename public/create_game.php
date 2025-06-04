@@ -13,7 +13,7 @@ $log = file_exists($log_file) ? json_decode(file_get_contents($log_file), true) 
 $log[$ip] = array_filter($log[$ip] ?? [], fn($t) => $t > time() - $limit_seconds);
 if (count($log[$ip]) >= $max_creations) {
     http_response_code(429);
-    die("<span style='color: red;'>You've created too many games, try again later.</span>");
+    die("<span style='color: red;'>Error: You've created too many games, try again later.</span>");
 }
 
 $log[$ip][] = time();
